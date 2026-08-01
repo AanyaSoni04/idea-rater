@@ -1,125 +1,85 @@
-# 💡 AI Idea Rater
+# Idea Rater
 
-An AI-powered web application that evaluates startup and product ideas through an interactive conversation instead of a single prompt.
-
-Instead of immediately rating an idea, the AI first asks clarifying questions to understand the target users, distribution strategy, differentiation, and business model. It then generates structured feedback including pros, cons, reasoning, and an overall score.
-
----
+An AI-powered startup idea evaluation platform that conducts interactive, multi-turn conversations to assess startup ideas — asking targeted clarifying questions and returning structured, actionable feedback.
 
 ## Features
 
-- Interactive multi-step AI conversation
-- AI-generated clarifying questions
-- Structured evaluation with:
-  - Pros
-  - Cons
-  - Overall score (1–10)
-  - Detailed reasoning
-- Modern Streamlit interface
-- Google Gemini 3.5 Flash integration
-- Robust JSON parsing and validation
-- Secure API key management using environment variables
-
----
+- **Conversational evaluation** — engages in a multi-turn Q&A flow, asking clarifying questions before scoring an idea (rather than a single-shot rating)
+- **AI-driven scoring** — powered by Google Gemini 3.5 Flash for question generation and idea assessment
+- **Structured, validated output** — JSON response validation ensures consistent, parseable feedback across every conversation turn
+- **Secure API key handling** — credentials are managed via environment variables, never hard-coded
+- **Persistent session state** — Streamlit session-state management keeps multi-step conversations stable across interactions
+- **Modular architecture** — clean separation of concerns for easier maintenance and extension
 
 ## Tech Stack
 
-- Python
-- Streamlit
-- Google Gemini API
-- Google GenAI SDK
-- python-dotenv
-- Git
+- **Language:** Python
+- **Frontend:** Streamlit
+- **AI/LLM:** Google Gemini API (Gemini 3.5 Flash)
+- **Data format:** JSON
+- **Version control:** Git
 
----
+## Getting Started
 
-## Project Structure
 
-```
-idea-rater/
-│
-├── app.py              # Streamlit UI
-├── idea_logic.py       # Prompt construction and JSON parsing
-├── llm_client.py       # Gemini API integration
-├── test_idea_logic.py
-├── requirements.txt
-├── .env.example
-└── README.md
-```
-
----
-
-## How It Works
-
-1. User enters a startup or product idea.
-2. Gemini generates 3–5 clarifying questions.
-3. User answers the questions.
-4. Gemini evaluates the idea and returns:
-   - Pros
-   - Cons
-   - Score (1–10)
-   - Explanation
-
----
-
-## Installation
+### Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/AanyaSoni04/idea-rater.git
-
 cd idea-rater
 
-python -m venv venv
-
-venv\Scripts\activate
-
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-Create a `.env` file:
+### Configuration
 
-```env
-GEMINI_API_KEY=your_api_key
-GEMINI_MODEL=gemini-3.5-flash
+Create a `.env` file in the project root and add your Gemini API key:
+
+```
+GEMINI_API_KEY=your_api_key_here
 ```
 
-Run:
+> **Note:** Update the variable name above to match whatever your code actually reads (e.g. `GOOGLE_API_KEY`) — check your config/env loading file to confirm.
+
+### Running the App
 
 ```bash
 streamlit run app.py
 ```
 
----
+> Update `app.py` to your actual entry-point filename if different.
 
-## Improvements Made
+Then open the local URL Streamlit prints in your terminal (typically `http://localhost:8501`).
 
-Compared to the original implementation, this version:
+## How It Works
 
-- Migrated from OpenAI API to Google Gemini 3.5 Flash
-- Updated the LLM integration using the Google GenAI SDK
-- Added secure environment-based configuration
-- Resolved deprecated model compatibility issues
-- Improved API key security with `.gitignore`
+1. The user describes their startup idea.
+2. The app asks targeted clarifying questions to fill in gaps (market, users, differentiation, etc.).
+3. Once enough context is gathered, Gemini scores the idea and generates structured feedback.
+4. Results are validated and returned in a consistent JSON format for display.
 
----
+## Project Structure
+
+```
+idea-rater/
+├── app.py              # Main Streamlit application
+├── requirements.txt     # Python dependencies
+├── .env                 # API keys (not committed)
+└── ...
+```
+
+> Update this tree to reflect your actual file layout.
 
 ## Future Improvements
 
-- User authentication
-- PDF export
-- Idea history
-- Analytics dashboard
-- Side-by-side idea comparison
-- Charts for idea scoring
+- Add persistent storage for evaluated ideas
+- Support additional LLM providers
+- Export feedback reports as PDF
 
----
 
-## Screenshots
+## Author
 
-(Add screenshots here)
-
----
-
-## License
-
-MIT
+**Aanya Soni**
+GitHub: [@AanyaSoni04](https://github.com/AanyaSoni04)
